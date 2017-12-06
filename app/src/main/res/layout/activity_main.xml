@@ -9,10 +9,112 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Picture not loaded yet."
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.856"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="123dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Load Picture"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="125dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/background_light"
+        android:text="SHOW PREVIEW"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="138dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="28dp"
+        android:background="@android:color/holo_green_light"
+        android:text="Save Picture"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="24dp"
+        android:text="Median Noise Reduction"
+        app:layout_constraintBottom_toTopOf="@+id/radioButton2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="24dp"
+        android:text="Gauss Blur"
+        app:layout_constraintBottom_toTopOf="@+id/radioButton3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="24dp"
+        android:text="Choose filter:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/radioButton"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:textColor="@color/colorPrimary" />
+
+    <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="24dp"
+        android:text="Mean Removal"
+        app:layout_constraintBottom_toTopOf="@+id/radioButton4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="24dp"
+        android:text="Another filter"
+        app:layout_constraintBottom_toTopOf="@+id/radioButton5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:layout_marginStart="24dp"
+        android:text="Last filter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
