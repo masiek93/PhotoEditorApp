@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.vansuita.gaussianblur.GaussianBlur;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,6 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button saveButton;
     private ImageView image;
     private RadioGroup radioGroup;
+    private int filterNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +67,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // find which radio button is selected
                 if(checkedId == R.id.filter1) {
-                    Toast.makeText(MainActivity.this, "choice: A",
-                            Toast.LENGTH_SHORT).show();
+                    filterNumber = 1;
                 } else if(checkedId == R.id.filter2) {
-                    Toast.makeText(MainActivity.this, "choice: B",
-                            Toast.LENGTH_SHORT).show();
+                    filterNumber = 2;
                 } else if(checkedId == R.id.filter3){
-                    Toast.makeText(MainActivity.this, "choice: C",
-                            Toast.LENGTH_SHORT).show();
+                    filterNumber = 3;
                 } else if(checkedId == R.id.filter4){
-                    Toast.makeText(MainActivity.this, "choice: D",
-                            Toast.LENGTH_SHORT).show();
+                    filterNumber = 4;
                 } else if(checkedId == R.id.filter5){
-                    Toast.makeText(MainActivity.this, "choice: E",
-                            Toast.LENGTH_SHORT).show();
+                    filterNumber = 5;
                 }
             }
         });
@@ -122,7 +120,30 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivityForResult(i, LOAD_IMAGE_RESULTS);
                 break;
             case R.id.button2:
-                // do stuff;
+                //Synchronous blur
+                switch(filterNumber){
+                    case 0:
+                        Toast.makeText(MainActivity.this, "Choose filter first", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(MainActivity.this, "Filter not implemented yet.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Bitmap blurredBitmap = GaussianBlur.with(getApplicationContext()).render(image.getDrawable());
+                        image.setImageBitmap(blurredBitmap);
+                        break;
+                    case 3:
+                        Toast.makeText(MainActivity.this, "Filter not implemented yet.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(MainActivity.this, "Filter not implemented yet.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 5:
+                        Toast.makeText(MainActivity.this, "Filter not implemented yet.", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+
                 break;
             case R.id.button3:
                 EasyPermissions.requestPermissions(this, "Access for storage",101, galleryPermissions);
@@ -144,7 +165,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     e.printStackTrace();
                 }
 
+                Toast.makeText(MainActivity.this, "Picture saved.", Toast.LENGTH_SHORT).show();
 
+
+
+                break;
+            case R.id.RGroup:
+                //Synchronous blur
+                Bitmap blurredBitmap = GaussianBlur.with(getApplicationContext()).render(image.getDrawable());
+                image.setImageBitmap(blurredBitmap);
 
                 break;
         }
