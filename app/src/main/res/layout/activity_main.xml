@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="24dp"
-            android:text="Gauss Blur"
+            android:text="Gaussian Blur"
             app:layout_constraintBottom_toTopOf="@+id/radioButton3"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="24dp"
-            android:text="Another filter"
+            android:text="Histogram Equalization"
             app:layout_constraintBottom_toTopOf="@+id/radioButton5"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="24dp"
-            android:text="Last filter"
+            android:text="Gradient Directional"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

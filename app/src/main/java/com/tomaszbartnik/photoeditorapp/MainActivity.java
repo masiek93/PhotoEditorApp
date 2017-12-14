@@ -4,8 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -31,7 +38,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     // Image loading result to pass to startActivityForResult method.
     private static int LOAD_IMAGE_RESULTS = 1;
 
-    private Button button;
+    private Button loadButton;
+    private Button previewButton;
+    private Button saveButton;
     private ImageView image;
     private RadioGroup radioGroup;
 
@@ -41,11 +50,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         // Find references to the GUI objects
-        button = (Button) findViewById(R.id.button);
+        loadButton = (Button) findViewById(R.id.button);
+        previewButton = (Button) findViewById(R.id.button2);
+        saveButton = (Button) findViewById(R.id.button3);
         image = (ImageView) findViewById(R.id.imageView2);
         radioGroup = (RadioGroup) findViewById(R.id.RGroup);
 
-        button.setOnClickListener(this);
+        loadButton.setOnClickListener(this);
+        previewButton.setOnClickListener(this);
+        saveButton.setOnClickListener(this);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -99,12 +112,43 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        // Create the Intent for Image Gallery.
-        EasyPermissions.requestPermissions(this, "Access for storage",101, galleryPermissions);
-        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        switch(v.getId()){
+            case R.id.button:
+                EasyPermissions.requestPermissions(this, "Access for storage",101, galleryPermissions);
+                // Create the Intent for Image Gallery.
+                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-        // Start new activity with the LOAD_IMAGE_RESULTS to handle back the results when image is picked from the Image Gallery.
-        startActivityForResult(i, LOAD_IMAGE_RESULTS);
+                // Start new activity with the LOAD_IMAGE_RESULTS to handle back the results when image is picked from the Image Gallery.
+                startActivityForResult(i, LOAD_IMAGE_RESULTS);
+                break;
+            case R.id.button2:
+                // do stuff;
+                break;
+            case R.id.button3:
+                EasyPermissions.requestPermissions(this, "Access for storage",101, galleryPermissions);
+                BitmapDrawable draw = (BitmapDrawable) image.getDrawable();
+                Bitmap bitmap = draw.getBitmap();
+
+                try {
+                    FileOutputStream outStream = null;
+                    File sdCard = Environment.getExternalStorageDirectory();
+                    File dir = new File(sdCard.getAbsolutePath() + "/PhotoEditorApp");
+                    dir.mkdirs();
+                    String fileName = String.format("%d.jpg", System.currentTimeMillis());
+                    File outFile = new File(dir, fileName);
+                    outStream = new FileOutputStream(outFile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                    outStream.flush();
+                    outStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                break;
+        }
+
     }
 
 
